@@ -1,14 +1,14 @@
 package ru.geekbrains.java.man_cat_robot;
 
 public class RunningTrack implements Barrier {
-    int trackDistance;
+    public int lenght;
 
-public RunningTrack(int trackDistance) {
-    this.trackDistance = trackDistance;
+    public RunningTrack(int lenght) {
+        this.lenght = lenght;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("Дистанция на беговой дорожке " + this.trackDistance + " км");
+    public boolean getOver(Athlete athlete) {
+        return athlete.getmaxLenght() >= lenght;
     }
 }

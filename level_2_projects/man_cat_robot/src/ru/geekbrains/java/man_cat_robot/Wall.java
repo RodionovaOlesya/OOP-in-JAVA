@@ -7,8 +7,9 @@ public class Wall implements Barrier {
         this.height = height;
     }
 
+
     @Override
-    public void showInfo() {
-        System.out.println("На пути стена высотой " + this.height + " м");
+    public boolean getOver(Athlete athlete) {
+        return athlete.getmaxJump() >= height;
     }
 }

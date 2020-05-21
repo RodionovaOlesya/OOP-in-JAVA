@@ -1,35 +1,32 @@
 package ru.geekbrains.java.man_cat_robot;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {
-       Human mrFirst = new Human(5, 2);
-       Cat barsik = new Cat(10,3);
-       Wall firstWall = new Wall(2);
-       Wall secondWall = new Wall(10);
-       RunningTrack firstTrack = new RunningTrack(3);
+        Human mrFirst = new Human (2, 20);
+        Cat barsik = new Cat(10, 3);
+        Cat murzik = new Cat (15, 4);
 
-        mrFirst.walk();
-        firstWall.showInfo();
-        mrFirst.jump(firstWall);
-        mrFirst.walk();
-        secondWall.showInfo();
-        mrFirst.jump(secondWall);
+        Athlete[] athletes = {mrFirst, barsik, murzik};
 
-        firstTrack.showInfo();
-        mrFirst.run(firstTrack);
+        Wall firstWall = new Wall(2);
+        Wall secondWall = new Wall(10);
+        RunningTrack firstTrack = new RunningTrack(3);
 
-       /* Human [] member = new Human [2];
-        member[0] = mrFirst;*/
+       // mrFirst.jump(firstWall);
 
-        barsik.jump(firstWall);
-        barsik.run(firstTrack);
+       Barrier[] barriers = {firstWall, secondWall, firstTrack};
 
+       for (Athlete a: athletes) {
+            for (Barrier b: barriers) {
+                boolean result = b.getOver(a);
+                if (result){
+                    System.out.println("Участник преодолел препятствие");
+                }
+                else  {
+                    System.out.println("Препятствие непреодолимо!");
+                }
+            }
+        }
     }
-public static void goBarrier (Barrier barrier) {
-    barrier.showInfo();
-}
 }
