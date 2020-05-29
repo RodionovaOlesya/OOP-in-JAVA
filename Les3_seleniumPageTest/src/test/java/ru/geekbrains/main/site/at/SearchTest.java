@@ -11,63 +11,57 @@ public class SearchTest extends BaseTest {
 
     @Test
     void searchJavaTest() {
-        // Открываем страницу с курсами
         driver.get(BASE_URL + "/courses");
-        // Закрываем баннер
-        driver.findElement(By.xpath("//div/div/button[*]")).click();
+        //driver.findElement(By.xpath("//div/div/button[*]")).click();
 
         WebElement searchButton = driver.findElement(By.cssSelector("ul > li > .show-search-form"));
         searchButton.click();
 
         WebElement searchInput = driver.findElement(By.cssSelector(".search-panel__search-field"));
         searchInput.sendKeys("java");
-        // В после отправки поискового запроса, нужно дождаться прогрузки страницы.
-        // Попробуем использовать явные ожидания. Будем ждать до тех пор, пока панель, на которой расположены
-        //  нужные нам элементы не будет прогружена.
 
-        // Создаем экземпляр класса WebDriverWait, в конструктор передаем текущий экземпляр драйвера
-        // и количество секунд, которое нужно ждать.
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        // передаем в него условие - ждать до тех пор, пока элемент с указанным CSS селектором не появится на экране
-        // если ожидание затянется более чем на 15 секунд - тест упадет.
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("ul.search-page-tabs")));
+        WebElement until = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("ul.search-page-tabs")));
 
-        // Мы нашли первую интересующую нас плашку.
         WebElement professionsTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='professions']"));
-        // Давайте проверим, что она видна пользователю.
         Assertions.assertTrue(professionsTab.isDisplayed());
 
         String numProf = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='professions'] > span")).getText();
-        int i = Integer.parseInt(numProf);
-        Assertions.assertFalse(i<2); // тут тест падает, как поправить???
+        int numP = Integer.parseInt(numProf);
+        Assertions.assertTrue(numP >=2);
 
         // С остальными элементами поступим по аналогии
         WebElement coursesTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='courses']"));
         Assertions.assertTrue(coursesTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='courses'] > span")).getText();
-
+        String numCourses = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='courses'] > span")).getText();
+        int numC = Integer.parseInt(numCourses);
+        Assertions.assertTrue(numC > 15);
 
         WebElement webinarsTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='webinars']"));
         Assertions.assertTrue(webinarsTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='webinars'] > span")).getText();
+        String numWebinars = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='webinars'] > span")).getText();
+        int numW = Integer.parseInt(numWebinars);
+        Assertions.assertTrue(numW > 180 && numW < 300);
 
         WebElement blogsTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='blogs']"));
         Assertions.assertTrue(blogsTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='blogs'] > span")).getText();
+        String numBlogs = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='blogs'] > span")).getText();
+        int numB = Integer.parseInt(numBlogs);
+        Assertions.assertTrue(numB > 300);
 
         WebElement forumsTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='forums']"));
         Assertions.assertTrue(forumsTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='forums'] > span")).getText();
+        String numForums = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='forums'] > span")).getText();
+        int numF = Integer.parseInt(numForums);
+        Assertions.assertTrue(numF != 350);
 
         WebElement testsTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='tests']"));
         Assertions.assertTrue(testsTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='tests'] > span")).getText();
-
+        String numTests = driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='tests'] > span")).getText();
+        int numT = Integer.parseInt(numForums);
+        Assertions.assertTrue(numT != 0);
 
         WebElement companiesTab = driver.findElement(By.cssSelector("ul.search-page-tabs > li > a[data-tab='companies']"));
         Assertions.assertTrue(companiesTab.isDisplayed());
-        driver.findElement(By.cssSelector("ul.search-page-tabs a[data-tab='compsnies'] > span")).getText();
-
-
     }
 }
