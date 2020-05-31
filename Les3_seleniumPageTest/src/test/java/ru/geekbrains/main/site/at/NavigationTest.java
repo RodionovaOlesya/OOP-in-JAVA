@@ -30,7 +30,8 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void testsPageTest() {
-        driver.findElement(By.cssSelector("nav > a[href='/tests']")).click();
+        driver.get(BASE_URL + "/tests");
+
         header = driver.findElement(By.className("gb-header__title")).getText();
         assertEquals("Тесты", header);
 
@@ -42,7 +43,8 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void coursesPageTest() {
-        driver.findElement(By.cssSelector("nav.gb-left-menu__nav .svg-icon.icon-courses")).click();
+        driver.get(BASE_URL + "/courses");
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         //driver.findElement(By.xpath("//div/div/button[*]")).click();
 
@@ -57,7 +59,7 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void webinarPageTest() {
-        driver.findElement(By.cssSelector("nav > a[href='/events']")).click();
+        driver.get(BASE_URL + "/events");
 
         header = driver.findElement(By.className("gb-header__title")).getText();
         assertEquals("Вебинары", header);
@@ -70,7 +72,7 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void forumPageTest() {
-        driver.findElement(By.cssSelector("nav > a[href='/topics']")).click();
+        driver.get(BASE_URL + "/topics");
 
         header = driver.findElement(By.className("gb-header__title")).getText();
         assertEquals("Форум", header);
@@ -83,7 +85,7 @@ public class NavigationTest extends BaseTest {
 
     @Test
     public void blogPageTest() {
-        driver.findElement(By.cssSelector("nav > a[href='/posts']")).click();
+        driver.get(BASE_URL + "/posts");
 
         header = driver.findElement(By.className("gb-header__title")).getText();
         assertEquals("Блог", header);
