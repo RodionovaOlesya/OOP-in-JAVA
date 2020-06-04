@@ -1,37 +1,33 @@
 package ru.geekbrains.main.site.at;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.main.site.at.Base.BaseTest;
 import ru.geekbrains.main.site.at.pages.NavigationTab;
-import ru.geekbrains.main.site.at.pages.Page;
 
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.cssSelector;
-
+@Execution(value = ExecutionMode.CONCURRENT)
 public class NavigationTest extends BaseTest {
 
-    @Test
-    public void navigationPanelTest() {
+    @BeforeEach
+    public void openSite() {
         driver.get(BASE_URL + "/career");
+    }
 
-        PageFactory.initElements(driver, NavigationTab.class)
-                .clickButton("Тесты")
-                .checkHeader("Тесты")
-                .getNavigationTab()
-                .clickButton("Форум")
-                .checkHeader("Форум");
+    @ParameterizedTest
+    @MethodSource("pageGenerator")
+    public void navigationPanelTest(String buttonTitle) {
+        new NavigationTab(driver)
+                .clickButton(buttonTitle)
+                .checkHeader(buttonTitle);
+    }
 
+    public static Stream<String> pageGenerator() {
+        return Stream.of("Карьера", "Тесты", "Блог", "Форум", "Вебинары", "Курсы");
     }
 
    /* WebElement testedElement; //нужно ли?
