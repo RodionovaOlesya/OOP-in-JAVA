@@ -1,10 +1,12 @@
-package ru.geekbrains.main.site.at.junit;
+package ru.geekbrains.examples.junit.junit;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Disabled
 public class HamcrestExampleTest {
 
     @Test

@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.junit;
+package ru.geekbrains.examples.junit.junit;
 
 import org.junit.jupiter.api.*;
 
@@ -7,6 +7,7 @@ import java.util.Random;
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Disabled
 public class AnnotationExampleTest {
 
     @Disabled

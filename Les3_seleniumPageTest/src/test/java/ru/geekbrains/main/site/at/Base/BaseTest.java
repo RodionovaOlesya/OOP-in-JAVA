@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at;
+package ru.geekbrains.main.site.at.Base;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ public abstract class BaseTest {
     protected String header;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
         ChromeOptions options = new ChromeOptions();
@@ -25,7 +25,7 @@ public abstract class BaseTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         driver.quit();
     }
 }
