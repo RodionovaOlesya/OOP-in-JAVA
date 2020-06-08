@@ -1,6 +1,7 @@
 package ru.geekbrains.main.site.at;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,11 +15,13 @@ import java.util.stream.Stream;
 public class NavigationTest extends BaseTest {
 
     @BeforeEach
+    @Step("Open '/career' page")
     public void openSite() {
         driver.get(BASE_URL + "/career");
     }
 
     @ParameterizedTest
+    @DisplayName("check navigation items")
     @MethodSource("pageGenerator")
     public void navigationPanelTest(String buttonTitle) {
         new NavigationTab(driver)

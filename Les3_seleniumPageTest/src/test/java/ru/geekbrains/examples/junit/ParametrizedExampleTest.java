@@ -1,4 +1,4 @@
-package ru.geekbrains.examples.junit.junit;
+package ru.geekbrains.examples.junit;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;

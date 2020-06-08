@@ -16,7 +16,7 @@ public class SearchTest extends BaseTest {
     @Test
     public void searchJavaTest() {
         driver.get(BASE_URL + "/courses");
-        //driver.findElement(By.xpath("//div/div/button[*]")).click();
+        driver.findElement(By.xpath("//div/div/button[*]")).click();
 
         WebElement searchButton = driver.findElement(By.cssSelector("ul > li > .show-search-form"));
         searchButton.click();
