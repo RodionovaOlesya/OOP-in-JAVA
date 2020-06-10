@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,13 +23,14 @@ public class Page extends BasePage {
         navigationTab = new NavigationTab(driver);
     }
 
+    @Step("Check {expected} is header on page")
     public Page checkHeader(String expected) {
         assertEquals(expected, pageHeader.getText());
         return this;
     }
 
+    @Step("In navigation tab")
     public NavigationTab getNavigationTab() {
-
         return navigationTab;
     }
 }
